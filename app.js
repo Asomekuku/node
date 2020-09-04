@@ -26,6 +26,8 @@ app.use('/', indexRouter);
 //与用户有关的接口
 app.use('/api/users', usersRouter);
 app.use('/api/cates',require('./routes/cates'))
+app.use('/api/goods',require('./routes/goods'))
+
 
 
 
