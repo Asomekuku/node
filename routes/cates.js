@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var cateModel =require('../model/cateModel')
-/* GET home page. */
+/* GET home page. 添加品类*/
 router.post('/add', function(req, res, next) {
     let {cate ,cate_zh} =req.body
     cateModel.insertMany([{cate,cate_zh,create_time:Date.now()}]).then(()=>{

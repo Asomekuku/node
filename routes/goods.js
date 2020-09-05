@@ -6,8 +6,9 @@ var goodModel =require('../model/goodsModel');
 //新增，修改
 router.post('/addshop', function(req, res, next) {
     let {id,cate ,img,name,desc,hot,rank,price} =req.body
-    if(!name) return res.json({err:1,msg:'name必要'})
+    // if(!name) return res.json({err:1,msg:'name必要'})
     if(id){
+        // 修改
         let ele={
             cate,
             img,
@@ -17,13 +18,13 @@ router.post('/addshop', function(req, res, next) {
             rank,
             price
         }
-        goodModel.updateOne({_id:id},{$set:ele}).then(arr=>{
-            res.json({err:0,msg:'success'})
+            goodModel.updateOne({_id:id},{$set:ele}).then(arr=>{
+                res.json({err:0,msg:'修改成功'})
         })
     }else{
         //新增
         goodModel.insertMany([{cate ,img,name,desc,hot,rank,price,create_time:Date.now()}]).then(()=>{
-            res.json({err:0,msg:'success'})
+            res.json({err:0,msg:'添加成功'})
         })
     }
    
@@ -54,6 +55,12 @@ router.get('/detail',function(req,res){
         res.json({err:0,msg:'success',data:arr[0]})
     })
 })
-
+//删除
+router.get('/del',function(req,res){
+    let {id} =req.query
+    goodModel.deleteOne({_id:id}).then(arr=>{
+        res.json({err:0,msg:'删除成功',data:arr})
+    })
+})
 
 module.exports = router;
