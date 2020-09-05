@@ -27,7 +27,7 @@ app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/cates',require('./routes/cates'))
 app.use('/api/goods',require('./routes/goods'))
-
+app.use('/api/upload',require('./routes/upload'))
 
 
 
