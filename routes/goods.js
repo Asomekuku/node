@@ -55,11 +55,25 @@ router.get('/detail',function(req,res){
         res.json({err:0,msg:'success',data:arr[0]})
     })
 })
+
 //删除
 router.get('/del',function(req,res){
     let {id} =req.query
     goodModel.deleteOne({_id:id}).then(arr=>{
         res.json({err:0,msg:'删除成功',data:arr})
+    })
+})
+
+// 查询商品
+router.get('/getname',function(req,res){
+    let {name} =req.query
+    goodModel.find({name}).then(arr=>{
+        if(arr.length>0){
+            res.json({err:0,msg:'查询成功',data:{list:arr}})
+        }else{
+            res.json({err:1})
+        }
+       
     })
 })
 
